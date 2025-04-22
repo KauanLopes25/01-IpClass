@@ -1,12 +1,23 @@
 package br.com.senai.IpClass.ui;
 
+import java.util.Scanner;
+
+import br.com.senai.IpClass.model.Rede;
+
 public class Menu {
+	
 	public static void mostrarMenu() {
-		System.out.println("Hello World");;
+		Rede rede = new Rede();
+		Scanner reader = new Scanner(System.in);
+		
 		System.out.println("--------------------------------------");
 		System.out.println("Bem vindo ao auxiliar de Rede do SENAI");
 		System.out.println("--------------------------------------");
-		System.out.println("Digite um IP com CIDR como no exemplo");
-		System.out.println("192.168.0.0/24");
+		System.out.println("Digite um IP com CIDR como no exemplo: 192.168.0.0/24");
+		// recebendo ip
+		rede.setIp(reader.toString());
+		//resultado
+		rede.definirClasse();
+		
 	}
 }
