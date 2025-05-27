@@ -7,9 +7,6 @@ public class main {
 		System.out.println("Hello World");
 		Menu.mostrarMenu();
 		
-		
-		
-		
 	}
 
 }

@@ -15,9 +15,12 @@ public class Menu {
 		System.out.println("--------------------------------------");
 		System.out.println("Digite um IP com CIDR como no exemplo: 192.168.0.0/24");
 		// recebendo ip
-		rede.setIp(reader.toString());
+		
+		rede.setIp(reader.nextLine());
+		
 		//resultado
 		rede.definirClasse();
-		
+		rede.definirMaskPadraoDecimal();
+	    reader.close();
 	}
 }
