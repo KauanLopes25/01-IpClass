@@ -16,7 +16,7 @@ public class Rede {
 	}
 	
 	public void definirClasse() {
-		String[] ipClasse = ip.split("\\."); // usa dois \\ porque . é um caractere especial em regex
+		String[] ipClasse = ip.split("\\."); // usa dois \\ porque . ï¿½ um caractere especial em regex
 		int octeto = Integer.parseInt(ipClasse[0]);
 		if (octeto <= 127) {
 			classe = "A";  
@@ -32,18 +32,25 @@ public class Rede {
 	}
 	
 	public void definirMaskPadraoDecimal() {
-		String[] ipCidr = ip.split("/");
-		int cidr = Integer.parseInt(ipCidr[1]);
-		int[] mascara = new int[4];
-		if (cidr <= 8) {
+		// Criado vetor para mascara decimal de rede 
+		int[] mascaraDecimal = new int[4];
+		// Criado vetor para armazenar o CIDR do IP
+		String[] cidrDoIp = ip.split("/");
+		// Convertido o CIDR de string para inteiro
+		int cidr = Integer.parseInt(cidrDoIp[1]);
+		
+		if (cidr <=8) {
+			mascaraDecimal[0] = 128;
+			for (int i = cidr;i > 0 && i <= 8; i--) {
+				int correios = 128 / 2 ;
+			}
 			
-				mascara[0] = 1;
-				for(int i = cidr; i > 1; i--) {
-					mascara[0] = mascara[0]/2;
-				}
-			
-		System.out.println("mascara decimal: "+mascara[0]+".0.0.0");
+		System.out.println("MascarÃ¡ em Decimal: "+mascaraDecimal[0]);
 		}
+		
+					
+			
+			
 	}
 	
 	public void definirMaskPadraoBinario() {
