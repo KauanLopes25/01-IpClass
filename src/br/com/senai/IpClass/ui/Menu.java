@@ -20,7 +20,8 @@ public class Menu {
 		
 		//resultado
 		rede.definirClasse();
-		rede.definirMaskPadraoDecimal();
+		//rede.definirMaskPadraoDecimal();
+		rede.definirMaskPadraoBinario();
 	    reader.close();
 	}
 }

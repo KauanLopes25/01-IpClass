@@ -39,21 +39,51 @@ public class Rede {
 		// Convertido o CIDR de string para inteiro
 		int cidr = Integer.parseInt(cidrDoIp[1]);
 		
-		if (cidr <=8) {
-			mascaraDecimal[0] = 128;
-			for (int i = cidr;i > 0 && i <= 8; i--) {
-				int correios = 128 / 2 ;
-			}
-			
-		System.out.println("Mascará em Decimal: "+mascaraDecimal[0]);
+		// Lógica para defição do primeiro octeto da mascará padrão decimál
+		for (int i = cidr, j = 1; i > 0 && i < 9; i--,j= j * 2) {
+			mascaraDecimal[0] = 128/j + mascaraDecimal[0] ;
 		}
 		
-					
-			
-			
+		// Lógica para defição do segundo octeto da mascará padrão decimál
+		for (int i = cidr, j = 1; i > 8 && i < 17; i--,j= j * 2) {
+			mascaraDecimal[0] = 255;
+			mascaraDecimal[1] = 128/j + mascaraDecimal[1] ;
+		}
+		
+		// Lógica para defição do terceiro octeto da mascará padrão decimál
+		for (int i = cidr, j = 1; i > 16 && i < 25; i--,j= j * 2) {
+			mascaraDecimal[0] = 255;
+			mascaraDecimal[1] = 255;
+			mascaraDecimal[2] = 128/j + mascaraDecimal[2] ;
+		}
+		
+		// Lógica para defição do terceiro octeto da mascará padrão decimál
+		for (int i = cidr, j = 1; i > 24 && i < 33; i--,j= j * 2) {
+			mascaraDecimal[0] = 255;
+			mascaraDecimal[1] = 255;
+			mascaraDecimal[2] = 255;
+			mascaraDecimal[3] = 128/j + mascaraDecimal[3] ;
+		}
+		
+		System.out.println("Mascara padrao decimal: "+mascaraDecimal[0]+"."+mascaraDecimal[1]+"."+mascaraDecimal[2]+"."+mascaraDecimal[3]);
+		
 	}
 	
 	public void definirMaskPadraoBinario() {
+		// Criado vetor para mascara decimal de rede 
+		boolean[] mascaraBinario = new boolean[32];
+		// Criado vetor para armazenar o CIDR do IP
+		String[] cidrDoIp = ip.split("/");
+		// Convertido o CIDR de string para inteiro
+		int cidr = Integer.parseInt(cidrDoIp[1]);
+		
+		// Lógica para defição do terceiro octeto da mascará padrão decimál
+		for (int i = cidr, j = 0; i > 0 && i < 33; i--,j++) {
+			mascaraBinario[j] = true;
+		}
+		
+		System.out.println("Mascara padrao binário: "+mascaraBinario[0]+"."+mascaraBinario[1]+"."+mascaraBinario[2]+"."+mascaraBinario[3]);
+		
 		
 	}
 	
