@@ -2,16 +2,23 @@ package br.com.senai.IpClass.model;
 
 public class Rede {
 	private String ip;
-	private int maskCidr = 24;
 	private String maskPadraoDecimal;
 	private String maskPadraoBinario;
 	private String classe;
+	private int maskCidr;
+	private int ipsDisponiveis;
 
 	public void setIp(String ip) {
 		this.ip = ip;
+		setMaskCidr(maskCidr);
 	}
 
 	public void setMaskCidr(int maskCidr) {
+		
+		// Criado vetor para armazenar o CIDR do IP
+		String[] cidrDoIp = ip.split("/");
+		// Convertido o CIDR de string para inteiro
+		maskCidr = Integer.parseInt(cidrDoIp[1]);
 		this.maskCidr = maskCidr;
 	}
 
@@ -142,7 +149,9 @@ public class Rede {
 	}
 
 	public void definirIpsDisponiveis() {
-
+		
+		
+		
 	}
 
 }
