@@ -6,7 +6,7 @@ public class Rede {
 	private String maskPadraoBinario;
 	private String classe;
 	private int maskCidr;
-	private int ipsDisponiveis;
+	private double ipsDisponiveis;
 
 	public void setIp(String ip) {
 		this.ip = ip;
@@ -148,9 +148,10 @@ public class Rede {
 
 	}
 
-	public void definirIpsDisponiveis() {
-		
-		
+	public double definirIpsDisponiveis() {
+		ipsDisponiveis = Math.pow(2, (32 - maskCidr))-2;
+		System.out.println(ipsDisponiveis);
+		return ipsDisponiveis;
 		
 	}
 
