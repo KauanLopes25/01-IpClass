@@ -1,12 +1,18 @@
 package br.com.senai.IpClass.model;
 
 public class Rede {
+	//Atributos
 	private String ip;
 	private String maskPadraoDecimal;
 	private String maskPadraoBinario;
 	private String classe;
 	private int maskCidr;
 	private double ipsDisponiveis;
+	
+	//Vetor
+	
+	
+	//MÈtodos
 
 	public void setIp(String ip) {
 		this.ip = ip;
@@ -34,6 +40,7 @@ public class Rede {
 		} else {
 			classe = "D";
 		}
+		
 	}
 
 	public void definirMaskPadraoDecimal() {
@@ -70,18 +77,18 @@ public class Rede {
 			mascaraDecimal[3] = 128 / j + mascaraDecimal[3];
 		}
 
-		System.out.println("Mascara padrao decimal: " + mascaraDecimal[0] + "." + mascaraDecimal[1] + "."
-				+ mascaraDecimal[2] + "." + mascaraDecimal[3]);
+		maskPadraoDecimal = Integer.toString(mascaraDecimal[0])+"."+Integer.toString(mascaraDecimal[1])
+							+"."+Integer.toString(mascaraDecimal[2])+"."+Integer.toString(mascaraDecimal[3]);
 
 	}
 
 	public void definirMaskPadraoBinario() {
 		// Criado vetor para mascara decimal de rede
 		String mascaraBinario[] = new String[4];
-		mascaraBinario[0] = " ";
-		mascaraBinario[1] = " ";
-		mascaraBinario[2] = " ";
-		mascaraBinario[3] = " ";
+		mascaraBinario[0] = "";
+		mascaraBinario[1] = "";
+		mascaraBinario[2] = "";
+		mascaraBinario[3] = "";
 		// Criado vetor para armazenar o CIDR do IP
 		String[] cidrDoIp = ip.split("/");
 		// Convertido o CIDR de string para inteiro
@@ -143,16 +150,29 @@ public class Rede {
 			}
 		}
 
-		System.out.println("Mascara padrao bin√°rio: " + mascaraBinario[0] + "   " + mascaraBinario[1] + "   "
-				+ mascaraBinario[2] + "   " + mascaraBinario[3]);
+		maskPadraoBinario = mascaraBinario[0]+"  "+mascaraBinario[1]+"  "+mascaraBinario[2]+"  "+mascaraBinario[3];
 
 	}
 
-	public double definirIpsDisponiveis() {
+	public void definirIpsDisponiveis() {
 		ipsDisponiveis = Math.pow(2, (32 - maskCidr))-2;
-		System.out.println(ipsDisponiveis);
-		return ipsDisponiveis;
 		
 	}
-
+	
+	public String[] resultadoIpInfo(String ip) {
+		setIp(ip);
+		definirClasse();
+		definirMaskPadraoDecimal();
+		definirMaskPadraoBinario();
+		definirIpsDisponiveis();
+		
+		
+		String[] resultadoIP = new String[5];
+		resultadoIP[0] = "Ip: "+ip;
+		resultadoIP[1] = "Classe: "+classe;
+		resultadoIP[2] = "Mascar· Padr„o Decimal: "+maskPadraoDecimal;
+		resultadoIP[3] = "Mascar· Padr„o Bin·rio: "+maskPadraoBinario;
+		resultadoIP[4] = "Quantidade de Ips Disponiveis: "+(int)ipsDisponiveis;
+		return resultadoIP;
+	}
 }
